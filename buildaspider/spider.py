@@ -75,6 +75,7 @@ def check_link(session_link_tuple):
         resp = session.get(link.href)
     except Exception as e:
         link.status, link.err_msg = LinkStatus.RAISED_EXCEPTION, e
+        return link
 
     if resp.status_code in (200, 201, 302):
         status = LinkStatus.OK
@@ -99,7 +100,8 @@ class Spider(object):
         self.max_workers = max_workers
         self.time_format = time_format
 
-        self.visit_queue = set()
+        self.visit_queue = list()
+
         self.visited_urls = set()
         self.checked_urls = set()
         self.broken_urls = set()
@@ -116,10 +118,8 @@ class Spider(object):
         self.checked_urls.add(checked_link.href)
 
         if checked_link.status == LinkStatus.OK:
-            if checked_link.worth_visiting and (
-                checked_link.href not in self.visited_urls
-            ):
-                self.visit_queue.add(checked_link)
+            if checked_link.worth_visiting:
+                self.visit_queue.append(checked_link)
 
             self.log_checked_link(link)
         elif checked_link.status == LinkStatus.BROKEN:
@@ -247,15 +247,13 @@ class Spider(object):
             + Add pertinent links to the visit_queue
         """
         for seed_url in self.cfg.seed_urls:
-            self.visit_queue.add(Link(None, seed_url, None, cfg=self.cfg))
+            self.visit_queue.append(Link(None, seed_url, None, cfg=self.cfg))
 
         self.visit(self.root)
 
         try:
             while self.visit_queue:
-                next_link = self.visit_queue.pop()
-                if next_link.href not in self.visited_urls:
-                    self.visit(next_link)
+                self.visit(self.visit_queue.pop(0))
         finally:
             self.session.close()
 
