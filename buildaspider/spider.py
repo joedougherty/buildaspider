@@ -34,7 +34,7 @@ class Link(object):
         self.status = status
         self.http_code = None
         self.err_msg = None
-    
+
     def _handle_href(self, href):
         href = href.strip()
 
@@ -75,7 +75,7 @@ def check_link(session_link_tuple):
         resp = session.get(link.href)
     except Exception as e:
         link.status, link.err_msg = LinkStatus.RAISED_EXCEPTION, e
-        
+
     if resp.status_code in (200, 201, 302):
         status = LinkStatus.OK
     else:
@@ -87,7 +87,13 @@ def check_link(session_link_tuple):
 
 
 class Spider(object):
-    def __init__(self, path_to_config_file, verbose=False, max_workers=8, time_format='%Y-%m-%d_%H:%M'):
+    def __init__(
+        self,
+        path_to_config_file,
+        verbose=False,
+        max_workers=8,
+        time_format="%Y-%m-%d_%H:%M",
+    ):
         self.verbose = verbose
         self.cfg = Config(path_to_config_file)
         self.max_workers = max_workers
@@ -97,7 +103,7 @@ class Spider(object):
         self.visited_urls = set()
         self.checked_urls = set()
         self.broken_urls = set()
-        self.exception_urls = set() 
+        self.exception_urls = set()
 
         if all((self.cfg.username, self.cfg.password, self.cfg.login_url)):
             self.session = self.login()
@@ -126,16 +132,13 @@ class Spider(object):
             self.status_logger.error(
                 f"._update() received checked_link: {checked_link}"
             )
-    
+
     def setup_logging(self):
         now = datetime.now().strftime(self.time_format)
 
         logging.basicConfig(
-            filename=os.path.join(
-                self.cfg.log_dir, 
-                "crawler_{}.log".format(now)
-            ),
-            level=logging.INFO, 
+            filename=os.path.join(self.cfg.log_dir, "spider_{}.log".format(now)),
+            level=logging.INFO,
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         )
 
@@ -150,13 +153,13 @@ class Spider(object):
         self.exception_links_logpath = os.path.join(
             self.cfg.log_dir, "exception_links_{}.log".format(now)
         )
-    
+
     def login(self):
         raise NotImplementedError
 
     def log_checked_link(self, link):
         raise NotImplementedError
-    
+
     def log_broken_link(self, link):
         raise NotImplementedError
 
@@ -180,14 +183,14 @@ class Spider(object):
 
         for elem in BeautifulSoup(markup, "html.parser").find_all("a"):
             try:
-                elem["href"]
+                href = elem["href"]
             except KeyError:
                 # Skip any <a> tags missing the "href" attribute.
                 continue
 
-            if elem["href"] != current_url and self.keep_link(elem["href"]):
+            if href != current_url and self.keep_link(href):
                 gathered_links.append(
-                    Link(current_url, elem["href"], elem.text, cfg=self.cfg)
+                    Link(current_url, href, elem.text, cfg=self.cfg)
                 )
 
         return gathered_links
@@ -214,7 +217,7 @@ class Spider(object):
             "Unique Links Checked: {}".format(len(self.checked_urls))
         )
         self.status_logger.info(
-            "Broken Links Found:  {}".format(len(self.broken_urls))
+            "Broken Links Found: {}".format(len(self.broken_urls))
         )
         self.status_logger.info(
             "Pages in Visit Queue: {}".format(len(self.visit_queue))
@@ -251,7 +254,7 @@ class Spider(object):
         try:
             while self.visit_queue:
                 next_link = self.visit_queue.pop()
-                if next_link.href not in self.visited_urls: 
+                if next_link.href not in self.visited_urls:
                     self.visit(next_link)
         finally:
             self.session.close()

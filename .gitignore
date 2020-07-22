@@ -1,0 +1,7 @@
+logs/
+*.log
+*.pyc
+__pycache__/
+build/
+dist/
+spiderenv/
