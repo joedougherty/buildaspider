@@ -112,8 +112,6 @@ class Spider(object):
         else:
             self.session = mint_new_session()
 
-        self.root = Link(None, self.cfg.seed_urls[0], None, cfg=self.cfg)
-
     def _update(self, checked_link):
         self.checked_urls.add(checked_link.href)
 
@@ -225,9 +223,7 @@ class Spider(object):
 
     def run(self):
         """
-        Add any URLs specified in the config to the visit_queue.
-
-        Visit the home URL (self.root).
+        Add the seed URLs specified in the config to the visit_queue.
 
         While the visit_queue is non-empty:
 
@@ -236,6 +232,7 @@ class Spider(object):
             + Gather links on said page
                 - Filter out: 
                     * visited URLs
+                    * broken URLs
                     * URLs that caused exceptions
 
             + Check the gathered links:
@@ -248,8 +245,6 @@ class Spider(object):
         """
         for seed_url in self.cfg.seed_urls:
             self.visit_queue.append(Link(None, seed_url, None, cfg=self.cfg))
-
-        self.visit(self.root)
 
         try:
             while self.visit_queue:

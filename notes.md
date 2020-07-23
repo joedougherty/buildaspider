@@ -18,17 +18,34 @@ BFS:
 
 A. starts at the root node
 B. discovers neighboring nodes 
-C. proceeds by visiting them and continuing this process until there are no new nodes left to visit
+C. proceeds by visiting them and continuing this process until there are no new nodes left to visit/discover
 
 
-**A**: The first page we `.visit()` is the root node (`self.root`). This occurs in the `.run()` method.
+Wikipedia Pseudocode:
+
+
+	1  procedure BFS(G, root) is
+	2      let Q be a queue
+	3      label root as discovered	
+	4      Q.enqueue(root)			
+	5      while Q is not empty do
+	6          v := Q.dequeue()
+	7          if v is the goal then
+	8              return v
+	9          for all edges from v to w in G.adjacentEdges(v) do
+	10             if w is not labeled as discovered then
+	11                 label w as discovered
+	12                 w.parent := v
+	13                 Q.enqueue(w)
+
+
+
+**A**: We enqueue the seed_urls specified in the config file. This occurs in the `.run()` method.
 
 
     def run(self):
         for seed_url in self.cfg.seed_urls:
             self.visit_queue.add(Link(None, seed_url, None, cfg=self.cfg))
-
-        self.visit(self.root)
 
         try:
             while self.visit_queue:
@@ -83,7 +100,7 @@ If an element meets these conditions, it is added to the list:
 * href must not be the current url
 * href must pass `keep_link()` (can't be a broken link, a link that threw an exception, or a link that has been visited already):
 
-As long as a link is internal (`checked_link.worth_visiting == True`) it is added to visit_queue.
+As long as a link is internal (`checked_link.worth_visiting == True`) it is appended to visit_queue.
 
 **C**: The process continues until the visit_queue is empty. 
 
