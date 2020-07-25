@@ -51,9 +51,6 @@ class Link(object):
         else:
             return False
 
-    def __hash__(self):
-        return hash(hash(self.context) + hash(self.href) + hash(self.text))
-
     def __repr__(self):
         return f"""{self.href}
   - with text: "{self.text}"
@@ -87,6 +84,14 @@ def check_link(session_link_tuple):
     return link
 
 
+def append_line_to_log(path_to_log, line):
+    if not line.endswith('\n'):
+        line = f'''{line}\n'''
+
+    with open(path_to_log, 'a') as log:
+        log.write(line)
+
+
 class Spider(object):
     def __init__(
         self,
@@ -111,6 +116,11 @@ class Spider(object):
             self.session = self.login()
         else:
             self.session = mint_new_session()
+
+        if not isinstance(self.session, requests.Session):
+            raise Exception(
+                "Please ensure that the .login() method returns an object of type requests.Session."
+            )
 
     def _update(self, checked_link):
         self.checked_urls.add(checked_link.href)
@@ -153,16 +163,21 @@ class Spider(object):
         )
 
     def login(self):
-        raise NotImplementedError
+        #
+        # This method needs to return an instance of `requests.Session`.
+        #
+        # A new session can be obtained by calling `mint_new_session()`.
+        #
+        raise NotImplementedError("You'll need to implement the login method.")
 
     def log_checked_link(self, link):
-        raise NotImplementedError
+        append_line_to_log(self.checked_links_logpath, f'{link}')
 
     def log_broken_link(self, link):
-        raise NotImplementedError
+        append_line_to_log(self.broken_links_logpath, f'{link} :: {link.http_code}')
 
     def log_exception_link(self, link):
-        raise NotImplementedError
+        append_line_to_log(self.exception_links_logpath, f'{link} :: {link.err_msg}')        
 
     def keep_link(self, href):
         if any(
@@ -221,7 +236,7 @@ class Spider(object):
             "Pages in Visit Queue: {}".format(len(self.visit_queue))
         )
 
-    def run(self):
+    def weave(self):
         """
         Add the seed URLs specified in the config to the visit_queue.
 

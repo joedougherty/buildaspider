@@ -16,4 +16,4 @@ class MySpider(Spider):
 
 myspider = MySpider('cfg.ini')
 
-myspider.run()  
+myspider.weave()  
