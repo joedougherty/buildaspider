@@ -10,7 +10,7 @@ Designed to be a jumping off point for:
 
 + undesrstanding and implementing a crawler
 + parsing markup with `bs4 <https://www.crummy.com/software/BeautifulSoup/bs4/doc/BeautifulSoup>`_
-+ working with `requests <https://requests.readthedocs.io/en/master/>`
++ working with `requests <https://requests.readthedocs.io/en/master/>`_
 
 
 While its aims are more educational than industrial, it may still be suitable for crawling sites of moderate size (~1000 unique pages). 
