@@ -13,7 +13,7 @@ Designed to be a jumping off point for:
 + working with `requests <https://requests.readthedocs.io/en/master/>`_
 
 
-While its aims are more educational than industrial, it may still be suitable for crawling sites of moderate size (~1000 unique pages). 
+While its aims are more educational than industrial, it may still be suitable for crawling sites of moderate size (<1000 unique pages). 
 
 
 Written such that it can either be used as-is for small sites, or extended for any number of crawling applications.
