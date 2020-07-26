@@ -11,9 +11,9 @@ One way to model this problem is to consider a website as a kind of graph.
 
 
 
-[Wikipedia]
+According to the [Wikipedia page](https://en.wikipedia.org/wiki/Breadth-first_search):
 
-"It starts at the tree root ... and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level."
+*"It starts at the tree root ... and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level."*
 
 
 BFS:
