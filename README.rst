@@ -8,8 +8,9 @@ A simple, configurable web crawler written in Python.
 
 Designed to be a jumping off point for:
 
-+ implementing a crawler
-+ parsing markup with `bs4 <https://www.crummy.com/software/BeautifulSoup/bs4/doc/BeautifulSoup>`_.
++ undesrstanding and implementing a crawler
++ parsing markup with `bs4 <https://www.crummy.com/software/BeautifulSoup/bs4/doc/BeautifulSoup>`_
++ working with `requests <https://requests.readthedocs.io/en/master/>`
 
 
 While its aims are more educational than industrial, it may still be suitable for crawling sites of moderate size (~1000 unique pages). 

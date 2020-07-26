@@ -112,7 +112,14 @@ class Spider(object):
         self.broken_urls = set()
         self.exception_urls = set()
 
-        if all((self.cfg.username, self.cfg.password, self.cfg.login_url)):
+        if all(
+            (
+                self.cfg.login == True, 
+                self.cfg.username is not None, 
+                self.cfg.password is not None, 
+                self.cfg.login_url is not None,
+            )
+        ):
             self.session = self.login()
         else:
             self.session = mint_new_session()

@@ -11,6 +11,7 @@ class Config(object):
 
         self.cfg = config["buildaspider"]
 
+        self.login = self.cfg.getboolean("login", None)
         self.username = self.cfg.get("username", None)
         self.password = self.cfg.get("password", None)
         self.login_url = self.cfg.get("login_url", None)
