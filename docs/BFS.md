@@ -1,9 +1,7 @@
-====================================================================
-A Theoretical Aside: A Practical Application of Breadth-first Search
-====================================================================
+# A Theoretical Aside: A Practical Application of Breadth-first Search #
 
 
-# The Motivating Question #
+## The Motivating Question ##
 
 
 *How can we visit all the interconnected pages on a given site?*
