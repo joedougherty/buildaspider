@@ -19,9 +19,11 @@ According to the [Wikipedia page](https://en.wikipedia.org/wiki/Breadth-first_se
 BFS:
 
 
-A. starts at the root node
-B. discovers neighboring nodes 
-C. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
+**A**. starts at the root node
+
+**B**. discovers neighboring nodes 
+
+**C**. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
 
 
 [Wikipedia Pseudocode](https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode):
