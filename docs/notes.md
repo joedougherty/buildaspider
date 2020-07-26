@@ -14,7 +14,7 @@ Python-specific Topics:
 ---
 
 * Concurrency: *concurrent.futures*
-* Logging: *configuring requests for retries*
+* **requests**: *configuring requests for retries*
 * Logging: *logging.basicConfig*
 
 
