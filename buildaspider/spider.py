@@ -57,8 +57,8 @@ class Link(object):
   - appearing on: {self.context}"""
 
 
-def mint_new_session():
-    adapter = HTTPAdapter(max_retries=Retry(total=3, backoff=1))
+def mint_new_session(max_num_retries=5):
+    adapter = HTTPAdapter(max_retries=Retry(total=max_num_retries, backoff=1))
     session = requests.Session()
     session.mount("http://", adapter)
     session.mount("https://", adapter)
@@ -122,7 +122,7 @@ class Spider(object):
         ):
             self.session = self.login()
         else:
-            self.session = mint_new_session()
+            self.session = mint_new_session(self.cfg.max_num_retries)
 
         if not isinstance(self.session, requests.Session):
             raise Exception(

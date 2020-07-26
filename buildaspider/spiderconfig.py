@@ -22,6 +22,8 @@ class Config(object):
         self.exclude_patterns = self.extract_patterns("exclude_patterns")
         self.seed_urls = self.extract_patterns("seed_urls")
 
+        self.max_num_retries = self.cfg.getint("max_num_retries", 5)
+
     def extract_patterns(self, config_section):
         raw_val = self.cfg.get(config_section, None)
         if not raw_val:
