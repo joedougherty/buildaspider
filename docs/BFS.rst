@@ -1,7 +1,9 @@
-# A Theoretical Aside: A Practical Application of Breadth-first Search #
+====================================================================
+A Theoretical Aside: A Practical Application of Breadth-first Search
+====================================================================
 
 
-## The Motivating Question ##
+# The Motivating Question #
 
 
 *How can we visit all the interconnected pages on a given site?*
@@ -24,7 +26,7 @@ B. discovers neighboring nodes
 C. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
 
 
-`<Wikipedia Pseudocode https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`_:
+`Wikipedia Pseudocode <https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`_:
 
 
 	1  procedure BFS(G, root) is
