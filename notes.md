@@ -22,7 +22,7 @@ Possible customization Ideas:
 
 ---
 
-* Configure/Override default checked/broken link output
+* Configure/Override default checked link output
 * Configure/Override default logging behavior
 
 
@@ -31,21 +31,26 @@ Resources:
 ---
 
 
-Official Retry Documentation:
-https://urllib3.readthedocs.io/en/latest/reference/urllib3.util.html#module-urllib3.util.retry
+**Official Retry Documentation**
+
+`<https://urllib3.readthedocs.io/en/latest/reference/urllib3.util.html#module-urllib3.util.retry>`
 
 
-Advanced usage of Python requests - timeouts, retries, hooks:
-https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/#retry-on-failure
+**Advanced usage of Python requests - timeouts, retries, hooks**
+
+`<https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/#retry-on-failure>`
 
 
-Logging basicConfig
-https://docs.python.org/3.8/library/logging.html#logging.basicConfig
+**Python stdlib Logging: basicConfig**
+
+`<https://docs.python.org/3.8/library/logging.html#logging.basicConfig>`
 
 
-BFS / FIFO Queue
-https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode
+**BFS / FIFO Queue**
+
+`<https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`
 
 
-Python: A quick introduction to the concurrent.futures module
-http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futures-module.html
+**Python: A quick introduction to the concurrent.futures module**
+
+`<http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futures-module.html>`
