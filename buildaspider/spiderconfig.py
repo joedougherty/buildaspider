@@ -2,7 +2,7 @@ import configparser
 import os
 
 
-class Config(object):
+class SpiderConfig(object):
     def __init__(self, abs_path_to_config_file):
         self.CONFIG_PATH = abs_path_to_config_file
 

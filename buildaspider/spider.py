@@ -15,7 +15,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
 
-from spiderconfig import Config
+from spiderconfig import SpiderConfig
 
 
 class LinkStatus(Enum):
@@ -101,7 +101,7 @@ class Spider(object):
         time_format="%Y-%m-%d_%H:%M",
     ):
         self.verbose = verbose
-        self.cfg = Config(path_to_config_file)
+        self.cfg = SpiderConfig(path_to_config_file)
         self.max_workers = max_workers
         self.time_format = time_format
 

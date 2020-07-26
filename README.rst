@@ -28,6 +28,7 @@ Usage
 
     from buildaspider import Spider
 
+
     myspider = Spider('/path/to/cfg.ini')
 
     myspider.weave()
