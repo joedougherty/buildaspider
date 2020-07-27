@@ -100,11 +100,9 @@ class Spider(object):
     def __init__(
         self,
         path_to_config_file,
-        verbose=False,
         max_workers=8,
         time_format="%Y-%m-%d_%H:%M",
     ):
-        self.verbose = verbose
         self.cfg = SpiderConfig(path_to_config_file)
         self.max_workers = max_workers
         self.time_format = time_format
