@@ -27,7 +27,7 @@ class SpiderConfig(object):
     def extract_patterns(self, config_section):
         raw_val = self.cfg.get(config_section, None)
         if not raw_val:
-            raise Exception(
+            raise ValueError(
                 f"""Please ensure that "{config_section}" contains at least one value!"""
             )
 
