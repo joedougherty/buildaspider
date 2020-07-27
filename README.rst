@@ -146,6 +146,53 @@ Here's an example of a fleshed-out login method to **POST** credentials (as obta
     myspider.weave()
 
 
+
+=======
+Logging
+=======
+
+
+By default, each run generates four logs:
+
+
++ status log
++ broken links log
++ checked links log
++ exception links log 
+
+
+The implementation lives in the  **setup_logging** method of the **Spider** base class:
+
+
+.. code-block:: python
+
+
+    def setup_logging(self):
+        now = datetime.now().strftime(self.time_format)
+
+        logging.basicConfig(
+            filename=os.path.join(
+                self.cfg.log_dir, 
+                "spider_{}.log".format(now)
+            ),
+            level=logging.INFO,
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        )
+
+        self.status_logger = logging.getLogger(__name__)
+
+        self.broken_links_logpath = os.path.join(
+            self.cfg.log_dir, "broken_links_{}.log".format(now)
+        )
+        self.checked_links_logpath = os.path.join(
+            self.cfg.log_dir, "checked_links_{}.log".format(now)
+        )
+        self.exception_links_logpath = os.path.join(
+            self.cfg.log_dir, "exception_links_{}.log".format(now)
+        )
+
+
+
 ====================
 Additional Resources
 ====================
