@@ -30,8 +30,47 @@ Usage
 
 
     myspider = Spider('/path/to/cfg.ini')
-
     myspider.weave()
+
+
+===================
+Example Config File
+===================
+
+
+    [buildaspider]
+
+    ; login = true 
+    ; In order to programatically login, uncomment the line above and ensure login = True
+    ;
+    ; You will also need to ensure that:
+    ;   + the username line is uncommented and set correctly
+    ;   + the password line is uncommented and set correctly
+    ;   + the login_url line is uncommented and set correctly
+
+    ; username = <USERNAME>
+    ; password = <PASSWORD>
+
+    ; Login URL (if req'd)
+    ; login_url = http://example.com/login
+
+    ; Absolute path to directory containing per-run logs
+    ; log_dir = /path/to/logs
+
+    ; Literal URLs to visit -- there must be at least one!
+    seed_urls = 
+        http://httpbin.org/
+
+    ; List of regex patterns to include
+    include_patterns =	
+        httpbin.org
+
+    ; List of regex patterns to exclude
+    exclude_patterns =
+        ^#$
+        ^javascript
+
+    max_num_retries = 5
 
 
 =========
