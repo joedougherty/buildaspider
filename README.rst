@@ -114,7 +114,7 @@ Here's the documentation from the base **Spider** class:
 
 
 
-Here's an example of a fleshed-out login method that POSTs credentials from the config file to the login_url.
+Here's an example of a fleshed-out login method to **POST** credentials (as obtained from the config file) to the login_url.
 
 
 
