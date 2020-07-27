@@ -37,7 +37,7 @@ Usage
 Example Config File
 ===================
 
-
+:: 
     [buildaspider]
 
     ; login = true 
