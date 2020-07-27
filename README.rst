@@ -37,7 +37,8 @@ Usage
 Example Config File
 ===================
 
-:: 
+.. code-block::
+
     [buildaspider]
 
     ; login = true 
