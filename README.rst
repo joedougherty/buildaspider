@@ -19,7 +19,7 @@ While its aims are more educational than industrial, it may still be suitable fo
 Written such that it can either be used as-is for small sites, or extended for any number of crawling applications.
 
 
-**buildaspider** is intended as a platform to build tools for your own quality assurance purposes.
+**buildaspider** is intended as a platform to learn to build tools for your own quality assurance purposes.
 
 
 ===================
