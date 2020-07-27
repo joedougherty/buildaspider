@@ -18,6 +18,10 @@ from requests.packages.urllib3.util.retry import Retry
 from spiderconfig import SpiderConfig
 
 
+class FailedLoginError(Exception):
+    pass
+
+
 class LinkStatus(Enum):
     OK = 1
     BROKEN = 2

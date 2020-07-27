@@ -92,10 +92,13 @@ Beyond Basic Usage
 ==================
 
 
-You can extend the functionality of **buildaspider** by inheriting from the **Spider** class. This is how you implement the ability for your spider to programmatically login.
+You can extend the functionality of **buildaspider** by inheriting from the **Spider** class and overriding methods. 
 
 
-Here's the documentation from the base `Spider` class:
+This is how you implement the ability for your spider to programmatically login.
+
+
+Here's the documentation from the base **Spider** class:
 
 
 .. code-block:: python
@@ -111,14 +114,13 @@ Here's the documentation from the base `Spider` class:
 
 
 
+Here's an example of a fleshed-out login method that POSTs credentials from the config file to the login_url.
+
+
 
 .. code-block:: python
 
-    from buildaspider import Spider, mint_new_session
-
-    
-    class FailedLoginError(Exception):
-        pass
+    from buildaspider import Spider, mint_new_session, FailedLoginError
 
 
     class MySpider(Spider):
