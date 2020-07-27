@@ -112,6 +112,8 @@ class Spider(object):
         self.broken_urls = set()
         self.exception_urls = set()
 
+        self.setup_logging()
+
         if all(
             (
                 self.cfg.login == True, 
