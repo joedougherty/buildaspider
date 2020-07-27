@@ -19,18 +19,6 @@ While its aims are more educational than industrial, it may still be suitable fo
 Written such that it can either be used as-is for small sites, or extended for any number of crawling applications.
 
 
-=====
-Usage
-=====
-
-
-.. code-block:: python
-
-    from buildaspider import Spider
-
-
-    myspider = Spider('/path/to/cfg.ini')
-    myspider.weave()
 
 
 ===================
@@ -70,6 +58,21 @@ Example Config File
         ^javascript
 
     max_num_retries = 5
+
+
+=====
+Usage
+=====
+
+
+.. code-block:: python
+
+    from buildaspider import Spider
+
+
+    myspider = Spider('/path/to/cfg.ini')
+    myspider.weave()
+
 
 
 =========
