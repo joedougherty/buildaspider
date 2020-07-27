@@ -79,7 +79,7 @@ Basic Usage
 
     myspider = Spider(
         '/path/to/cfg.ini',
-        # These are default settings
+        # These are the default settings
         max_workers=8,
         time_format="%Y-%m-%d_%H:%M",
     )
