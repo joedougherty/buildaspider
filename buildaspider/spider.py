@@ -1,3 +1,4 @@
+from collections import deque
 import concurrent.futures
 from datetime import datetime
 from enum import Enum
@@ -107,7 +108,7 @@ class Spider(object):
         self.max_workers = max_workers
         self.time_format = time_format
 
-        self.visit_queue = list()
+        self.visit_queue = deque()
 
         self.visited_urls = set()
         self.checked_urls = set()
@@ -274,7 +275,7 @@ class Spider(object):
 
         try:
             while self.visit_queue:
-                self.visit(self.visit_queue.pop(0))
+                self.visit(self.visit_queue.popleft())
         finally:
             self.session.close()
 
