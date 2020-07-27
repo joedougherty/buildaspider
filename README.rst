@@ -51,8 +51,6 @@ Example Config File
 
     ; username = <USERNAME>
     ; password = <PASSWORD>
-
-    ; Login URL (if req'd)
     ; login_url = http://example.com/login
 
     ; Absolute path to directory containing per-run logs
