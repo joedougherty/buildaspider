@@ -19,11 +19,16 @@ While its aims are more educational than industrial, it may still be suitable fo
 Written such that it can either be used as-is for small sites, or extended for any number of crawling applications.
 
 
+**buildaspider** is intended as a platform to build tools for your own quality assurance purposes.
 
 
 ===================
 Example Config File
 ===================
+
+
+A config file is *required*. In addition to the sample given below, you can find an example file in `examples/cgf.ini`.
+
 
 .. code-block::
 
@@ -60,9 +65,9 @@ Example Config File
     max_num_retries = 5
 
 
-=====
-Usage
-=====
+===========
+Basic Usage
+===========
 
 
 .. code-block:: python
@@ -70,14 +75,76 @@ Usage
     from buildaspider import Spider
 
 
-    myspider = Spider('/path/to/cfg.ini')
+    myspider = Spider(
+        '/path/to/cfg.ini',
+        # These are default settings
+        max_workers=8,
+        time_format="%Y-%m-%d_%H:%M",
+    )
+
     myspider.weave()
 
 
+==================
+Beyond Basic Usage
+==================
 
-=========
-Resources
-=========
+
+You can extend the functionality of **buildaspider** by inheriting from the **Spider** class. This is how you implement the ability for your spider to programmatically login.
+
+
+Here's the documentation from the base `Spider` class:
+
+
+.. code-block:: python
+
+    
+    def login(self):
+        #
+        # This method needs to return an instance of `requests.Session`.
+        #
+        # A new session can be obtained by calling `mint_new_session()`.
+        #
+        raise NotImplementedError("You'll need to implement the login method.")
+
+
+
+
+.. code-block:: python
+
+    from buildaspider import Spider, mint_new_session
+
+    
+    class FailedLoginError(Exception):
+        pass
+
+
+    class MySpider(Spider):
+        def login(self):
+            new_session = mint_new_session()
+
+            login_payload = {
+                'username': self.cfg.username,
+                'password': self.cfg.password,
+            }
+
+            response = new_session.post(self.cfg.login_url, data=login_payload)
+            
+            if response.status_code != 200:
+                raise FailedLoginError("Login Failed :(")
+
+            return response
+        
+
+
+    myspider = MySpider('/path/to/cfg.ini')
+
+    myspider.weave()
+
+
+====================
+Additional Resources
+====================
 
 
 **Official Retry Documentation**
