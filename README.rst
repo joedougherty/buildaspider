@@ -193,6 +193,33 @@ The implementation lives in the  **setup_logging** method of the **Spider** base
 
 
 
+There are three rudimentary methods provided that write to each of the above logs:
+
+
++ **log_checked_link**
++ **log_broken_link**
++ **log_exception_link**
+
+
+For example:
+
+
+.. code-block:: python
+
+    def log_checked_link(self, link):
+        append_line_to_log(self.checked_links_logpath, f'{link}')
+
+
+This can be overridden to extend logging capabilities. 
+
+
+These methods can also can be overriden to trigger custom behavior when:
+
++ a link is checked
++ a broken link is found
++ a link that threw an exception is found
+
+
 ====================
 Additional Resources
 ====================
