@@ -234,6 +234,7 @@ There are a few events that occur during the crawling process that you may want 
 
 There are pre-visit and post-visit methods you can override/extend. 
 
+
 +----------------------------------------------+-------------------------------+
 | Event 									   | Method to Override/Extend 	   |
 +==============================================+===============================+
@@ -249,6 +250,7 @@ There are pre-visit and post-visit methods you can override/extend.
 +----------------------------------------------+-------------------------------+
 | crawling is complete						   | **.cleanup()**				   | 							   |
 +----------------------------------------------+-------------------------------+
+
 
 
 **Spider.pre_visit_hook()** provides the ability to run code when **.visit()** is called. Code here will execute prior to library-provided functionality in **.visit()**, aside from setting **self.current_link** at the outset. 
