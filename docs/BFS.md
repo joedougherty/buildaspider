@@ -65,11 +65,11 @@ The first seed_url is the root of the graph. Let's visit https://joedougherty.gi
 
     def weave(self):
         for seed_url in self.cfg.seed_urls:
-            self.visit_queue.add(Link(None, seed_url, None, cfg=self.cfg))
+            self.visit_queue.append(Link(None, seed_url, None, cfg=self.cfg))
 
         try:
             while self.visit_queue:
-                self.visit(self.visit_queue.pop())
+                self.visit(self.visit_queue.popleft())
         finally:
             self.session.close()
 

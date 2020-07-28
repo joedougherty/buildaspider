@@ -22,8 +22,8 @@ Possible customization Ideas:
 
 ---
 
-* Configure/Override default checked link output
-* Configure/Override default logging behavior
+* Configure/Override default checked link output [DONE]
+* Configure/Override default logging behavior    [DONE]
 
 
 Resources:

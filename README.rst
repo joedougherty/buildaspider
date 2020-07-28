@@ -87,64 +87,6 @@ Basic Usage
     myspider.weave()
 
 
-==================
-Beyond Basic Usage
-==================
-
-
-You can extend the functionality of **buildaspider** by inheriting from the **Spider** class and overriding methods. 
-
-
-This is how you implement the ability for your spider to programmatically login.
-
-
-Here's the documentation from the base **Spider** class:
-
-
-.. code-block:: python
-
-    
-    def login(self):
-        #
-        # This method needs to return an instance of `requests.Session`.
-        #
-        # A new session can be obtained by calling `mint_new_session()`.
-        #
-        raise NotImplementedError("You'll need to implement the login method.")
-
-
-
-Here's an example of a fleshed-out login method to **POST** credentials (as obtained from the config file) to the login_url.
-
-
-
-.. code-block:: python
-
-    from buildaspider import Spider, mint_new_session, FailedLoginError
-
-
-    class MySpider(Spider):
-        def login(self):
-            new_session = mint_new_session()
-
-            login_payload = {
-                'username': self.cfg.username,
-                'password': self.cfg.password,
-            }
-
-            response = new_session.post(self.cfg.login_url, data=login_payload)
-            
-            if response.status_code != 200:
-                raise FailedLoginError("Login Failed :(")
-
-            return response
-        
-
-
-    myspider = MySpider('/path/to/cfg.ini')
-
-    myspider.weave()
-
 
 
 =======
@@ -220,31 +162,89 @@ These methods can also can be overriden to trigger custom behavior when:
 + a link that threw an exception is found
 
 
+==================
+Beyond Basic Usage
+==================
+
+
+You can extend the functionality of **buildaspider** by inheriting from the **Spider** class and overriding methods. 
+
+
+This is how you implement the ability for your spider to programmatically login.
+
+
+Here's the documentation from the base **Spider** class:
+
+
+.. code-block:: python
+
+    
+    def login(self):
+        #
+        # This method needs to return an instance of `requests.Session`.
+        #
+        # A new session can be obtained by calling `mint_new_session()`.
+        #
+        raise NotImplementedError("You'll need to implement the login method.")
+
+
+
+Here's an example of a fleshed-out login method to **POST** credentials (as obtained from the config file) to the login_url. (For more details on logging in with **requests** see: `<https://pybit.es/requests-session.html>`_.)
+
+
+
+.. code-block:: python
+
+    from buildaspider import Spider, mint_new_session, FailedLoginError
+
+
+    class MySpider(Spider):
+        def login(self):
+            new_session = mint_new_session()
+
+            login_payload = {
+                'username': self.cfg.username,
+                'password': self.cfg.password,
+            }
+
+            response = new_session.post(self.cfg.login_url, data=login_payload)
+            
+            if response.status_code != 200:
+                raise FailedLoginError("Login Failed :(")
+
+            return response
+        
+
+
+    myspider = MySpider('/path/to/cfg.ini')
+
+    myspider.weave()
+
+
 ====================
 Additional Resources
 ====================
 
 
 **Official Retry Documentation**
-
 https://urllib3.readthedocs.io/en/latest/reference/urllib3.util.html#module-urllib3.util.retry
 
 
 **Advanced usage of Python requests - timeouts, retries, hooks**
-
 https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/#retry-on-failure
 
 
 **Python stdlib Logging: basicConfig**
-
 https://docs.python.org/3.8/library/logging.html#logging.basicConfig
 
 
 **BFS / FIFO Queue**
-
 https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode
 
 
 **Python: A quick introduction to the concurrent.futures module**
-
 http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futures-module.html
+
+
+**Using Python Requests on a Page Behind a Login**
+https://pybit.es/requests-session.html
