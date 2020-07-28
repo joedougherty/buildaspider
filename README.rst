@@ -71,6 +71,8 @@ Basic Usage
 ===========
 
 
+Once the config file is created and ready to go, it is time to create a **Spider** instance.
+
 
 .. code-block:: python
 
@@ -87,6 +89,7 @@ Basic Usage
     myspider.weave()
 
 
+This will start the web crawling process, beginning with the URLs specified in **seed_urls** in the config file.
 
 
 =======
