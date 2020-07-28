@@ -255,13 +255,19 @@ There are pre-visit and post-visit methods you can override/extend.
 
 
 +------------+------------+-----------+
-| Event      | Header 2   | Header 3  |
-+============+============+===========+
-| body row 1 | column 2   | column 3  |
-+------------+------------+-----------+
+| Event      | Method                 |
++============+========================+
 | link visit is about to begin        |
 +------------+------------+-----------+
 | link visit is about to end          |
++------------+------------+-----------+
+| a link has been marked as checked   | 
++------------+------------+-----------+
+| a link has been marked as broken    | 
++------------+------------+-----------+
+| a link has been marked as having thrown an exception    | 
++------------+------------+-----------+
+| crawling is complete                  | 
 +------------+------------+-----------+
 
 
