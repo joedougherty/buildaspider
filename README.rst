@@ -255,11 +255,13 @@ There are pre-visit and post-visit methods you can override/extend.
 
 
 +------------+------------+-----------+
-| Header 1   | Header 2   | Header 3  |
+| Event      | Header 2   | Header 3  |
 +============+============+===========+
 | body row 1 | column 2   | column 3  |
 +------------+------------+-----------+
-| body row 2 | Cells may span columns.|
+| link visit is about to begin        |
++------------+------------+-----------+
+| link visit is about to end          |
 +------------+------------+-----------+
 
 
