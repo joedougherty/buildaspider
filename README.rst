@@ -248,7 +248,7 @@ There are pre-visit and post-visit methods you can override/extend.
 +----------------------------------------------+-------------------------------+
 | marks a link as having thrown an exception   | **.log_exception_link()**	   |
 +----------------------------------------------+-------------------------------+
-| crawling is complete						   | **.cleanup()**				   | 							   |
+| crawling is complete						   | **.cleanup()**				   |
 +----------------------------------------------+-------------------------------+
 
 
