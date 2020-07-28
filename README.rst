@@ -274,7 +274,7 @@ You may choose to store visited links in some custom container:
 
 **NOTE:** this provides direct access to the current **Link** object in scope. 
 
-A safe strategy is to make a copy of the current **Link**, using **deepcopy**.
+A safe strategy is to make a copy of the current **Link** using **deepcopy**.
 
 
 .. code-block:: python
