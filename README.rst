@@ -257,7 +257,7 @@ There are pre-visit and post-visit methods you can override/extend.
 +------------+--------------------------------------------+
 | Event      | Method                                     |
 +============+============================================+
-| link visit is about to begin                            |
+| link visit is about to begin | **.pre_visit_hook()**    |
 +------------+--------------------------------------------+
 | link visit is about to end                              |
 +------------+--------------------------------------------+
