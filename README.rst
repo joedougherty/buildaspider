@@ -264,12 +264,11 @@ You may choose to store visited links in some custom container:
 
 
     custom_visited_links = list()
-
-
+    
     def pre_visit_hook(self, link):
         # The `link` being referenced here
-		# is the link about to be visited
-		custom_visited_links.append(link)
+        # is the link about to be visited
+        custom_visited_links.append(link)
 
 
 
