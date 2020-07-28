@@ -323,7 +323,6 @@ What if you want to *extend* (not merely override) the functionality of **.log_b
 
     def log_broken_link(self, link):
         super().log_broken_link(link)  
-        
         # You've now retained the original functionality 
         # by running the method as defined on the parent instance
 
