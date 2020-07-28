@@ -316,8 +316,8 @@ What if you want to *extend* (not merely override) the functionality of **.log_b
 .. code-block:: python
 
     def log_broken_link(self, link):
-        self.super().log_broken_link(link)  # You've now retained the original functionality 
-                                            # by running the method on the parent instance
+        super().log_broken_link(link)  # You've now retained the original functionality 
+                                       # by running the method on the parent instance
 
         # Perhaps now you want to: 
         #   + cache this value?
