@@ -175,8 +175,9 @@ class Spider(object):
         )
 
     def login(self):
+        # If your session doesn't require logging in, you can leave this method unimplemented.
         #
-        # This method needs to return an instance of `requests.Session`.
+        # Otherwise, this method needs to return an instance of `requests.Session`.
         #
         # A new session can be obtained by calling `mint_new_session()`.
         #
