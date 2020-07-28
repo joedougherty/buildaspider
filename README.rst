@@ -169,6 +169,8 @@ These methods can also can be overriden to trigger custom behavior when:
 Beyond Basic Usage
 ==================
 
+Adding the Ability to Login
+---------------------------
 
 You can extend the functionality of **buildaspider** by inheriting from the **Spider** class and overriding methods. 
 
@@ -222,6 +224,29 @@ Here's an example of a fleshed-out login method to **POST** credentials (as obta
     myspider = MySpider('/path/to/cfg.ini')
 
     myspider.weave()
+
+
+
+Providing Custom Functionality by Attaching to Event Hooks
+----------------------------------------------------------
+
+There are a few events that occur during the crawling process that you may want to additional functionality to.
+
+
+For example, whenever the **Spider**:
+
+
++ visits a link
++ marks a link as checked
++ marks a link as broken
++ marks a link as having thrown an exception
+
+
+There are pre-visit and post-visit methods you can override. 
+
+**Spider.pre_visit_hook()** provides the ability to run code right after **.visit()** is called.
+
+**Spider.post_visit_hook()** provides the ability to run code right before **.visit()** finishes.
 
 
 ====================

@@ -131,7 +131,7 @@ class Spider(object):
 
         if not isinstance(self.session, requests.Session):
             raise Exception(
-                "Please ensure that the .login() method returns an object of type requests.Session."
+                "Please ensure that the .login() method returns an object of type: requests.Session."
             )
 
     def _update(self, checked_link):
@@ -220,7 +220,15 @@ class Spider(object):
 
         return gathered_links
 
+    def pre_visit_hook(self):
+        pass
+
+    def post_visit_hook(self):
+        pass
+
     def visit(self, link):
+        self.pre_visit_hook()
+
         self.status_logger.info("\nVisiting {}...".format(link.href))
 
         resp = self.session.get(link.href)
@@ -247,6 +255,8 @@ class Spider(object):
         self.status_logger.info(
             "Pages in Visit Queue: {}".format(len(self.visit_queue))
         )
+
+        self.post_visit_hook()
 
     def weave(self):
         """
