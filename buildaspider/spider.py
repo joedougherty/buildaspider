@@ -220,14 +220,17 @@ class Spider(object):
 
         return gathered_links
 
-    def pre_visit_hook(self):
+    def pre_visit_hook(self, link):
         pass
 
-    def post_visit_hook(self):
+    def post_visit_hook(self, link):
+        pass
+
+    def cleanup(self):
         pass
 
     def visit(self, link):
-        self.pre_visit_hook()
+        self.pre_visit_hook(link)
 
         self.status_logger.info("\nVisiting {}...".format(link.href))
 
@@ -256,7 +259,7 @@ class Spider(object):
             "Pages in Visit Queue: {}".format(len(self.visit_queue))
         )
 
-        self.post_visit_hook()
+        self.post_visit_hook(link)
 
     def weave(self):
         """
@@ -288,5 +291,7 @@ class Spider(object):
                 self.visit(self.visit_queue.popleft())
         finally:
             self.session.close()
+
+            self.cleanup()
 
             self.status_logger.info("Crawling complete.")

@@ -230,23 +230,69 @@ Here's an example of a fleshed-out login method to **POST** credentials (as obta
 Providing Custom Functionality by Attaching to Event Hooks
 ----------------------------------------------------------
 
-There are a few events that occur during the crawling process that you may want to additional functionality to.
+There are a few events that occur during the crawling process that you may want to attach some additional functionality to.
+
+There are pre-visit and post-visit methods you can override/extend. 
+
++----------------------------------------------+-------------------------------+
+| Event 									   | Method to Override/Extend 	   |
++==============================================+===============================+
+| link visit is about to begin 				   | **.pre_visit_hook()**         |
++----------------------------------------------+-------------------------------+
+| link visit is about to end 				   | **.post_visit_hook()**  	   |
++----------------------------------------------+-------------------------------+
+| marks a link as checked                      | **.log_checked_link()** 	   |
++----------------------------------------------+-------------------------------+
+| marks a link as broken					   | **.log_broken_link()**  	   |
++----------------------------------------------+-------------------------------+
+| marks a link as having thrown an exception   | **.log_exception_link()**	   |
++----------------------------------------------+-------------------------------+
+| crawling is complete						   | **.cleanup()**				   | 							   |
++----------------------------------------------+-------------------------------+
 
 
-For example, whenever the **Spider**:
+**Spider.pre_visit_hook()** provides the ability to run code when **.visit()** is called. Code here will execute prior to library-provided functionality in **.visit()**, aside from setting **self.current_link** at the outset. 
 
-
-+ visits a link
-+ marks a link as checked
-+ marks a link as broken
-+ marks a link as having thrown an exception
-
-
-There are pre-visit and post-visit methods you can override. 
-
-**Spider.pre_visit_hook()** provides the ability to run code right after **.visit()** is called.
 
 **Spider.post_visit_hook()** provides the ability to run code right before **.visit()** finishes.
+
+
+You may choose to store visited links in some custom container:
+
+
+.. code-block:: python
+
+
+    custom_visited_links = list()
+
+
+    def pre_visit_hook(self, link):
+        # The `link` being referenced here
+		# is the link about to be visited
+		custom_visited_links.append(link)
+
+
+
+Please note that this provides direct access to the current **Link** object in scope. 
+
+A safer strategy is to make a copy of the current **Link**, using **deepcopy**.
+
+
+.. code-block:: python
+
+
+
+    from copy import deepcopy
+    
+
+    custom_visited_links = list()
+
+
+    def pre_visit_hook(self, link):
+        current_link_copy = deepcopy(link) 
+        custom_visited_links.append(current_link_copy)
+
+
 
 
 ====================
