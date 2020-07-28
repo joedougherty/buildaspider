@@ -6,3 +6,4 @@ build/
 dist/
 spiderenv/
 crawl
+buildaspider.egg-info/
