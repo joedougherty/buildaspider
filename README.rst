@@ -253,6 +253,17 @@ There are pre-visit and post-visit methods you can override/extend.
 
 
 
+
++------------+------------+-----------+
+| Header 1   | Header 2   | Header 3  |
++============+============+===========+
+| body row 1 | column 2   | column 3  |
++------------+------------+-----------+
+| body row 2 | Cells may span columns.|
++------------+------------+-----------+
+
+
+
 **Spider.pre_visit_hook()** provides the ability to run code when **.visit()** is called. Code here will execute prior to library-provided functionality in **.visit()**, aside from setting **self.current_link** at the outset. 
 
 
