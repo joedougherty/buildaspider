@@ -248,16 +248,18 @@ There are pre-visit and post-visit methods you can override/extend.
 | a link has been marked as broken                  | **.log_broken_link()**    | 
 +---------------------------------------------------+---------------------------+
 | a link has been marked as causing an exception    | **.log_exception_link()** | 
-+---------------------------------------------------+---------------------+-----+
++---------------------------------------------------+---------------------------+
 | crawling is complete                              | **.cleanup()**            | 
 +---------------------------------------------------+---------------------------+
 
 
 
-**Spider.pre_visit_hook()** provides the ability to run code when **.visit()** is called. Code here will execute prior to library-provided functionality in **.visit()**, aside from setting **self.current_link** at the outset. 
-
+**Spider.pre_visit_hook()** provides the ability to run code when **.visit()** is called. Code specified in **.pre_visit_hook()** will execute prior to library-provided functionality in **.visit()**. 
 
 **Spider.post_visit_hook()** provides the ability to run code right before **.visit()** finishes.
+
+
+The overridden methods **.pre_visit_hook()** and **.post_visit_hook()** ought to pass in **link** in order to keep the current link in scope and available as a variable with that name. 
 
 
 You may choose to store visited links in some custom container:

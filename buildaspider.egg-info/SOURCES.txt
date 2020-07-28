@@ -1,0 +1,10 @@
+README.rst
+setup.py
+buildaspider/__init__.py
+buildaspider/spider.py
+buildaspider/spiderconfig.py
+buildaspider.egg-info/PKG-INFO
+buildaspider.egg-info/SOURCES.txt
+buildaspider.egg-info/dependency_links.txt
+buildaspider.egg-info/requires.txt
+buildaspider.egg-info/top_level.txt
