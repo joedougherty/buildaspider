@@ -272,9 +272,9 @@ You may choose to store visited links in some custom container:
 
 
 
-Please note that this provides direct access to the current **Link** object in scope. 
+**NOTE:** this provides direct access to the current **Link** object in scope. 
 
-A safer strategy is to make a copy of the current **Link**, using **deepcopy**.
+A safe strategy is to make a copy of the current **Link**, using **deepcopy**.
 
 
 .. code-block:: python
@@ -292,6 +292,37 @@ A safer strategy is to make a copy of the current **Link**, using **deepcopy**.
         custom_visited_links.append(current_link_copy)
 
 
+
+Extending/Overriding Pre-Defined Events 
+---------------------------------------
+
+
+By default, broken links are logged to the location specified by **self.broken_links_logpath**.
+
+We can see this in the **Spider** class:
+
+
+.. code-block:: python
+
+    def log_broken_link(self, link):
+        append_line_to_log(self.broken_links_logpath, f'{link} :: {link.http_code}')
+
+
+
+What if you want to *extend* (not merely override) the functionality of **.log_broken_link()**?
+
+
+
+.. code-block:: python
+
+    def log_broken_link(self, link):
+        self.super().log_broken_link(link)  # You've now retained the original functionality 
+                                            # by running the method on the parent instance
+
+        # Perhaps now you want to: 
+        #   + cache this value?
+        #   + run some action(s) as a result of this event firing?
+        #   + ???
 
 
 ====================
