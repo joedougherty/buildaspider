@@ -63,7 +63,7 @@ class Link(object):
 
 
 def mint_new_session(max_num_retries=5):
-    adapter = HTTPAdapter(max_retries=Retry(total=max_num_retries, backoff=1))
+    adapter = HTTPAdapter(max_retries=Retry(total=max_num_retries, backoff_factor=1))
     session = requests.Session()
     session.mount("http://", adapter)
     session.mount("https://", adapter)
