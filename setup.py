@@ -10,7 +10,7 @@ setup(
     author="Joe Dougherty",
     author_email="joseph.dougherty@gmail.com",
     packages=['buildaspider'],
-    install_requires=['requests', 'bs4'],
+    install_requires=['requests', 'bs4', 'pytest'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Operating System :: POSIX :: Linux',
@@ -20,4 +20,3 @@ setup(
         'Topic :: Education',
     ],
 )
-
