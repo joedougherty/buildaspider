@@ -332,6 +332,21 @@ What if you want to *extend* (not merely override) the functionality of **.log_b
         #   + ???
 
 
+
+======================
+Running the Test Suite
+======================
+
+
+.. code-block::
+
+
+    cd tests;
+    pytest
+
+
+
+
 ====================
 Additional Resources
 ====================
