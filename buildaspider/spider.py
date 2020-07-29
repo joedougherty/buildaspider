@@ -16,7 +16,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
 
-from spiderconfig import SpiderConfig
+from .spiderconfig import SpiderConfig
 
 
 class FailedLoginError(Exception):
