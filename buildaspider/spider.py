@@ -236,6 +236,14 @@ class Spider(object):
         self.status_logger.info("Visiting {}...".format(link.href))
 
         resp = self.session.get(link.href)
+        
+        # A redirect may resolve to a URL we've already seen
+        # 
+        # If so, hand control back to the caller
+        resolved_url = resp.url
+        if not self.keep_link(resolved_url):
+            return 
+
         self.visited_urls.add(link.href)
 
         gathered_links = self.gather_links(resp.content, link.href)
