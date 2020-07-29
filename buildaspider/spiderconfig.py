@@ -3,6 +3,13 @@ import os
 
 
 class SpiderConfig(object):
+    """
+    This class provides config file values for use in an instance of `Spider`.
+
+	:param CONFIG_FILE: Absolute path to the configuration file
+    :type CONFIG_FILE: str
+    """
+
     def __init__(self, abs_path_to_config_file):
         self.CONFIG_PATH = abs_path_to_config_file
 
@@ -25,6 +32,15 @@ class SpiderConfig(object):
         self.max_num_retries = self.cfg.getint("max_num_retries", 5)
 
     def extract_patterns(self, config_section):
+		"""
+		Returns a list of values from the section of config file 
+			specified by `config_section`.
+
+        :param config_section: The name of the section of the config file
+        :type config_section: str
+        :return: A list of the values specified in `config_section` 
+        :rtype: list 
+        """
         raw_val = self.cfg.get(config_section, None)
         if not raw_val:
             raise ValueError(
@@ -34,6 +50,12 @@ class SpiderConfig(object):
         return [p for p in raw_val.split("\n") if p not in ("", " ")]
 
     def set_log_dir(self):
+		"""
+		Ensures that the desired log directory already exists on the file system.
+
+		:return: the log directory
+		:rtype: str	
+		"""
         log_dir = self.cfg["log_dir"]
         if not os.path.exists(log_dir):
             raise FileNotFoundError(
