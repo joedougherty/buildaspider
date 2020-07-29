@@ -142,10 +142,10 @@ class Spider(object):
                 self.visit_queue.append(link)
 
             self.log_checked_link(link)
-        elif checked_link.status == LinkStatus.BROKEN:
+        elif link.status == LinkStatus.BROKEN:
             self.broken_urls.add(link.href)
             self.log_broken_link(link)
-        elif checked_link.status == LinkStatus.RAISED_EXCEPTION:
+        elif link.status == LinkStatus.RAISED_EXCEPTION:
             self.exception_urls.add(link.href)
             self.log_exception_link(link)
         else:
