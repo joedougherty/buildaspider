@@ -365,3 +365,8 @@ http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futur
 **Using Python Requests on a Page Behind a Login**
 
 https://pybit.es/requests-session.html
+
+
+**The Offical collections.deque Documentation**
+
+https://docs.python.org/3.8/library/collections.html#collections.deque
