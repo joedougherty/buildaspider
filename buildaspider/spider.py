@@ -134,12 +134,12 @@ class Spider(object):
                 "Please ensure that the .login() method returns an object of type: requests.Session."
             )
 
-    def _update(self, checked_link):
-        self.checked_urls.add(checked_link.href)
+    def _update(self, link):
+        self.checked_urls.add(link.href)
 
-        if checked_link.status == LinkStatus.OK:
-            if checked_link.worth_visiting:
-                self.visit_queue.append(checked_link)
+        if link.status == LinkStatus.OK:
+            if link.worth_visiting:
+                self.visit_queue.append(link)
 
             self.log_checked_link(link)
         elif checked_link.status == LinkStatus.BROKEN:
