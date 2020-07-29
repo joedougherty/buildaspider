@@ -233,7 +233,7 @@ class Spider(object):
     def visit(self, link):
         self.pre_visit_hook(link)
 
-        self.status_logger.info("\nVisiting {}...".format(link.href))
+        self.status_logger.info("Visiting {}...".format(link.href))
 
         resp = self.session.get(link.href)
         self.visited_urls.add(link.href)
