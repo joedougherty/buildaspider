@@ -233,8 +233,6 @@ class Spider(object):
     def visit(self, link):
         self.pre_visit_hook(link)
 
-        self.status_logger.info("Visiting {}...".format(link.href))
-
         resp = self.session.get(link.href)
         
         # A redirect may resolve to a URL we've already seen
@@ -243,6 +241,8 @@ class Spider(object):
         resolved_url = resp.url
         if not self.keep_link(resolved_url):
             return 
+        
+        self.status_logger.info("Visiting {}...".format(link.href))
 
         self.visited_urls.add(link.href)
 
