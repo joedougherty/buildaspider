@@ -140,7 +140,8 @@ class Spider(object):
         self.checked_urls.add(link.href)
 
         if link.status == LinkStatus.OK:
-            if link.worth_visiting and self.keep_link(link.resolved_url):
+            if link.worth_visiting:
+                if link.href
                 self.visit_queue.append(link)
 
             self.log_checked_link(link)
@@ -235,13 +236,14 @@ class Spider(object):
     def visit(self, link):
         self.pre_visit_hook(link)
 
-        resp = self.session.get(link.href)
-        
         self.status_logger.info("Visiting: {}".format(link.href))
 
         self.visited_urls.add(link.href)
+        
+        resp = self.session.get(link.href)
 
         gathered_links = self.gather_links(resp.content, link.href)
+
         self.status_logger.info("=> Checking {} links...".format(len(gathered_links)))
 
         packaged_links = [(self.session, link) for link in gathered_links]
