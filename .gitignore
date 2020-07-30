@@ -7,3 +7,5 @@ dist/
 spiderenv/
 crawl
 buildaspider.egg-info/
+tests/__pycache__/
+tests/test_logs/
