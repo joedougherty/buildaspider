@@ -242,7 +242,7 @@ class Spider(object):
         if not self.keep_link(resolved_url):
             return 
         
-        self.status_logger.info("Visiting {}...".format(link.href))
+        self.status_logger.info("Visiting: {}".format(link.href))
 
         self.visited_urls.add(link.href)
 
