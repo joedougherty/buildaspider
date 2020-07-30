@@ -143,8 +143,8 @@ class Spider(object):
             if all(
                 (
                     link.worth_visiting,
-                    link.href not in self.visited_urls,
-                    link.resolved_url not in self.visited_urls,
+                    self.keep_link(link.href),
+                    self.keep_link(link.resolved_url),
                 )   
             ):
                 self.visit_queue.append(link)
