@@ -140,9 +140,8 @@ class Spider(object):
         self.checked_urls.add(link.href)
 
         if link.status == LinkStatus.OK:
-            if link.worth_visiting:
-                if link.resolved_url and self.keep_link(link.resolved_url):
-                    self.visit_queue.append(link)
+            if link.worth_visiting and self.keep_link(link.resolved_url):
+                self.visit_queue.append(link)
 
             self.log_checked_link(link)
         elif link.status == LinkStatus.BROKEN:
