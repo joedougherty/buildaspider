@@ -39,6 +39,7 @@ class Link(object):
         self.status = status
         self.http_code = None
         self.err_msg = None
+        self.resolved_url = None
 
     def _handle_href(self, href):
         href = href.strip()
@@ -81,6 +82,7 @@ def check_link(session_link_tuple):
 
     if resp.status_code in (200, 201, 302):
         status = LinkStatus.OK
+        link.resolved_url = resp.url
     else:
         status = LinkStatus.BROKEN
 
@@ -139,7 +141,8 @@ class Spider(object):
 
         if link.status == LinkStatus.OK:
             if link.worth_visiting:
-                self.visit_queue.append(link)
+                if link.resolved_url and self.keep_link(link.resolved_url):
+                    self.visit_queue.append(link)
 
             self.log_checked_link(link)
         elif link.status == LinkStatus.BROKEN:
@@ -234,13 +237,6 @@ class Spider(object):
         self.pre_visit_hook(link)
 
         resp = self.session.get(link.href)
-        
-        # A redirect may resolve to a URL we've already seen
-        # 
-        # If so, hand control back to the caller
-        resolved_url = resp.url
-        if not self.keep_link(resolved_url):
-            return 
         
         self.status_logger.info("Visiting: {}".format(link.href))
 
