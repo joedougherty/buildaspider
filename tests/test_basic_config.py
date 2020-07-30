@@ -1,3 +1,6 @@
+import pytest
+
+
 from buildaspider import SpiderConfig
 
 
@@ -24,3 +27,8 @@ def test_exclude_patterns_set():
 
 def test_max_num_retries_is_set():
     assert myconfig.max_num_retries == 5
+
+
+def test_non_existent_log_dir_throws_exception():
+    with pytest.raises(FileNotFoundError):
+        myconfig = SpiderConfig('test_config/nonexistentlogdirectory.ini')
