@@ -341,7 +341,7 @@ Running the Test Suite
 .. code-block::
 
 
-    cd tests;
+    cd tests/
     pytest
 
 

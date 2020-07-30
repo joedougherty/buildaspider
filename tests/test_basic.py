@@ -24,6 +24,6 @@ def test_single_url_found_all_broken_links():
             'http://crawler-test.com/links/not_found/foo1', 
             'http://crawler-test.com/links/not_found/foo2', 
             'http://crawler-test.com/links/not_found/foo3', 
-            'http://crawler-test.com/links/not_found/foo5'
+            'http://crawler-test.com/links/not_found/foo5',
         }
     )
