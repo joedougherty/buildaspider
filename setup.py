@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name="buildaspider",
-    version='0.4',
+    version='0.5',
     description="Build yourself a small site crawler.",
     author="Joe Dougherty",
     author_email="joseph.dougherty@gmail.com",
