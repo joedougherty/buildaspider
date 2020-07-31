@@ -338,7 +338,7 @@ Running the Test Suite
 ======================
 
 
-You will need to ensure that the **log_dir** config file field is set correctly before you run the test suite. 
+**NOTE:** You will need to ensure that the **log_dir** config file field is set correctly before you run the test suite. 
 
 
 .. code-block::
