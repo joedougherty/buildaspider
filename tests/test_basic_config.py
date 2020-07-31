@@ -32,3 +32,19 @@ def test_max_num_retries_is_set():
 def test_non_existent_log_dir_throws_exception():
     with pytest.raises(FileNotFoundError):
         myconfig = SpiderConfig('test_config/nonexistentlogdirectory.ini')
+
+
+def test_missing_login_field():
+    assert myconfig.login is None
+
+
+def test_missing_username_field():
+    assert myconfig.username is None
+
+
+def test_missing_password_field():
+    assert myconfig.password is None
+
+
+def test_missing_login_url_field():
+    assert myconfig.login_url is None
