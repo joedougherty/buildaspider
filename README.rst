@@ -27,7 +27,7 @@ Example Config File
 ===================
 
 
-A config file is **required**. In addition to the sample given below, you can find an example file in `examples/cgf.ini`.
+A config file is **required**. In addition to the sample given below, you can find an example file in **examples/cgf.ini**.
 
 
 .. code-block::
