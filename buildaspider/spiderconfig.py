@@ -56,7 +56,11 @@ class SpiderConfig(object):
         :return: the log directory
         :rtype: str 
         """
-        log_dir = self.cfg["log_dir"]
+        log_dir = self.cfg.get("log_dir", None)
+
+        if not log_dir:
+            raise ValueError("Please ensure that log_dir exists and is set correctly in the config.")
+
         if not os.path.exists(log_dir):
             raise FileNotFoundError(
                 f"The log directory does not exist: {log_dir}"

@@ -48,3 +48,10 @@ def test_missing_password_field():
 
 def test_missing_login_url_field():
     assert myconfig.login_url is None
+
+
+def test_config_missing_log_dir():
+     with pytest.raises(ValueError):
+         myconfig = SpiderConfig('test_config/basic-no-log_dir.ini')
+
+
