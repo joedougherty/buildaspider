@@ -1,7 +1,11 @@
-# A Theoretical Aside: A Practical Application of Breadth-first Search #
+====================================================================
+A Theoretical Aside: A Practical Application of Breadth-first Search
+====================================================================
 
 
-## The Motivating Question ##
+-----------------------
+The Motivating Question
+-----------------------
 
 
 *How can we visit all the interconnected pages on a given site?*
@@ -9,6 +13,17 @@
 
 One way to model this problem is to consider a website as a kind of graph. 
 
+
+Imagine that we are going to visit a site: https://joedougherty.github.io.
+
+
+.. image:: assets/jd-index.png
+
+
+
+
+
+.. image:: assets/jdbloggraph.png
 
 
 According to the [Wikipedia page](https://en.wikipedia.org/wiki/Breadth-first_search):
@@ -27,6 +42,9 @@ BFS:
 
 
 [Wikipedia Pseudocode](https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode):
+
+
+.. code-block:: 
 
 
 	1  procedure BFS(G, root) is
@@ -51,17 +69,20 @@ It is important to note that we are not searching for a specific node. As such, 
 Given that there's no stop condition, we'll explore the graph until the visit queue is empty. We will try to visit every node.
 
 
-Let's look at how the BFS algorithm is implemented in our `Spider` object.
+Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 
 
-**A**: We enqueue the seed_urls specified in the config file. This occurs in the `.weave()` method.
+**A**: We enqueue the seed_urls specified in the config file. This occurs in the ``.weave()`` method.
 
 
-The first seed_url is the root of the graph. Let's visit https://joedougherty.github.io.
+The first seed_url is the root of the graph. Let's visit: https://joedougherty.github.io.
 
 
-# TODO -- ROOT IMAGE
 
+
+
+
+.. code-block:: python
 
     def weave(self):
         for seed_url in self.cfg.seed_urls:
@@ -73,18 +94,28 @@ The first seed_url is the root of the graph. Let's visit https://joedougherty.gi
         finally:
             self.session.close()
 
+            self.cleanup()
+
             self.status_logger.info("Crawling complete.")
 
 
-Here's what it looks like when we `.visit()` a link:
+Here's what it looks like when we ``.visit()`` a link:
 
+
+.. code-block:: python
 
     def visit(self, link):
-        resp = self.session.get(link.href)
+        self.pre_visit_hook(link)
+
+        self.status_logger.info("Visiting: {}".format(link.href))
 
         self.visited_urls.add(link.href)
+        
+        resp = self.session.get(link.href)
 
         gathered_links = self.gather_links(resp.content, link.href)
+
+        self.status_logger.info("=> Checking {} links...".format(len(gathered_links)))
 
         packaged_links = [(self.session, link) for link in gathered_links]
 
@@ -93,17 +124,19 @@ Here's what it looks like when we `.visit()` a link:
                 self._update(result)
 
 
-The use of `concurrent.futures.ThreadPoolExecutor` here lets us spawn up to `self.max_workers` to check multiple links at the same time.
+The use of ``concurrent.futures.ThreadPoolExecutor`` here lets us spawn up to ``self.max_workers`` to check multiple links at the same time.
 
 
-The `._update()` method keeps track of checked links, broken links, and links that threw exceptions.
+The ``._update()`` method keeps track of checked links, broken links, and links that threw exceptions.
 
 
-**NOTE**: the iterator returned by `exe.map` retains the original order of the iterable. If I understand this correctly, the calls to `check_link` happen concurrently, but the calls to `._update()` happen one-by-one after the threads have returned. Since the calls to `._update()` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
+**NOTE**: the iterator returned by ``exe.map`` retains the original order of the iterable. If I understand this correctly, the calls to ``check_link`` happen concurrently, but the calls to ``._update()`` happen one-by-one after the threads have returned. Since the calls to ``._update()`` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
 
 
-**B**: Discovering the nearest neighbors is achieved with `gather_links()`:
+**B**: Discovering the nearest neighbors is achieved with ``gather_links()``:
 
+
+.. code-block:: python
 
     def gather_links(self, markup, current_url):
         gathered_links = list()
@@ -119,23 +152,30 @@ The `._update()` method keeps track of checked links, broken links, and links th
                 gathered_links.append(
                     Link(current_url, href, elem.text, cfg=self.cfg)
                 )
-        
+
         return gathered_links
     
 
 If an element meets these conditions, it is added to the list:
 
-* element must have the `href` attribute 
-* href must not be the current url (prevent infinite `.visit()` loops)
-* href must pass `keep_link()` (link can't be: broken link, a link that threw an exception, or a link that has been visited already):
++ element must have the ``href`` attribute 
++ href must not be the current url (prevent infinite ``.visit()`` loops)
++ href must pass ``keep_link()`` (link can't be: broken, a link that threw an exception, or a link that has been visited already):
 
-As long as a link is internal (`checked_link.worth_visiting == True`) it is appended to visit_queue.
+As long as a link is internal (``checked_link.worth_visiting == True``) it is appended to visit_queue.
+
 
 **C**: The process continues until the visit_queue is empty. 
 
 
+.. code-block:: python
+
+    #
+    # This is an excerpt from .weave(), as per above
+    #
+
     while self.visit_queue:
-        self.visit(self.visit_queue.pop())
+        self.visit(self.visit_queue.popleft())
 
 
 Though our implementation is distributed across a few methods, we can see that all the parts are here and working together.
