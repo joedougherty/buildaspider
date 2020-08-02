@@ -94,8 +94,7 @@ Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 **A**: We enqueue the **seed_urls** specified in the config file. This occurs in the ``.weave()`` method.
 
 
-The first **seed_url** is the root of the graph. Let's visit: https://joedougherty.github.io.
-
+The first **seed_url** is the root of the graph.
 
 
 
@@ -141,10 +140,11 @@ Here's what it looks like when we ``.visit()`` a link:
                 self._update(result)
 
 
-The use of ``concurrent.futures.ThreadPoolExecutor`` here lets us spawn up to ``self.max_workers`` to check multiple links at the same time.
+A few points worth noting here:
 
-
-The ``._update()`` method keeps track of checked links, broken links, and links that threw exceptions.
++ the ``self.gather_links()`` method is our implementation of the pseudocode's ``G.adjacentEdges(v)``
++ The use of ``concurrent.futures.ThreadPoolExecutor`` here lets us spawn up to ``self.max_workers`` to check multiple links at the same time.
++ The ``._update()`` method keeps track of checked links, broken links, and links that threw exceptions. It is also where new pages are added to the ``visit_queue``.
 
 
 **NOTE**: the iterator returned by ``exe.map`` retains the original order of the iterable. If I understand this correctly, the calls to ``check_link`` happen concurrently, but the calls to ``._update()`` happen one-by-one after the threads have returned. Since the calls to ``._update()`` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
