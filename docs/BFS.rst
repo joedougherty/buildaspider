@@ -1,6 +1,6 @@
-====================================================================
-A Theoretical Aside: A Practical Application of Breadth-first Search
-====================================================================
+===============================================
+A Practical Application of Breadth-first Search
+===============================================
 
 
 -----------------------
@@ -20,6 +20,7 @@ Imagine that we are going to visit a site: https://joedougherty.github.io.
 .. image:: assets/jd-index.png
 
 
+-----
 
 If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. 
 
@@ -29,8 +30,7 @@ If we think of **https://joedougherty.github.io** as the root, we can imagine th
 
 
 
-
-There are a few ways to traverse graphs. In this case, Breadth-first Search is a natural fit.
+There are a `few ways <https://en.wikipedia.org/wiki/Tree_traversal>_` to traverse graphs. In this case, **Breadth-first Search** is a natural fit. 
 
 
 According to the `Wikipedia page <https://en.wikipedia.org/wiki/Breadth-first_search>`_:
@@ -46,6 +46,15 @@ BFS:
 **B**. discovers neighboring nodes 
 
 **C**. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
+
+
+Looking at the graphical representation above, picture:
+
++ starting at **https://joedougherty.github.io**
++ visiting **https://joedougherty.github.io/cv**
++ visiting **https://joedougherty.github.io/about**
++ visiting **https://joedougherty.github.io/blog**
+
 
 
 `Wikipedia Pseudocode <https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`_:
@@ -83,8 +92,6 @@ Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 
 
 The first **seed_url** is the root of the graph. Let's visit: https://joedougherty.github.io.
-
-
 
 
 
