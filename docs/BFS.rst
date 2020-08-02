@@ -20,6 +20,10 @@ Imagine that we are going to visit a site: https://joedougherty.github.io.
 .. image:: assets/jd-index.png
 
 
+
+This is a small site with a simple structure. 
+
+
 -----
 
 If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. 
