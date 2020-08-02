@@ -71,7 +71,7 @@ Looking at the graphical representation above, picture:
 	13                 Q.enqueue(w)
 
 
-BFS:
+Breadth-first Search:
 
 
 **A**. starts at the root node (lines 3,4)
@@ -84,7 +84,7 @@ BFS:
 It is important to note that we are not searching for a specific node in this case. We want to visit every possible node. As such, we do not specify a stop condition (as in lines 7-8 above).
 
 
-Given that there's no stop condition, we'll explore the graph until the visit queue is empty. We will try to visit every node.
+Given that there's no stop condition, we'll explore the graph until the visit queue is empty.
 
 --- 
 
