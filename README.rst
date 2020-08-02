@@ -35,7 +35,7 @@ A config file is **required**. In addition to the sample given below, you can fi
     [buildaspider]
 
     ; login = true 
-    ; In order to programatically login, uncomment the line above and ensure login = True
+    ; In order to programatically login, uncomment the line above and ensure login = true
     ;
     ; You will also need to ensure that:
     ;   + the username line is uncommented and set correctly
