@@ -33,19 +33,8 @@ If we think of **https://joedougherty.github.io** as the root, we can imagine th
 There are a `few ways <https://en.wikipedia.org/wiki/Tree_traversal>`_ to traverse graphs. In this case, **Breadth-first Search** is a natural fit. 
 
 
-According to the `Wikipedia page <https://en.wikipedia.org/wiki/Breadth-first_search>`_:
+According to the `Wikipedia page <https://en.wikipedia.org/wiki/Breadth-first_search>`_: *"It starts at the tree root ... and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level."*
 
-*"It starts at the tree root ... and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level."*
-
-
-BFS:
-
-
-**A**. starts at the root node
-
-**B**. discovers neighboring nodes 
-
-**C**. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
 
 
 Looking at the graphical representation above, picture:
@@ -66,7 +55,7 @@ Looking at the graphical representation above, picture:
 	1  procedure BFS(G, root) is
 	2      let Q be a queue
 	3      label root as discovered	
-	4      Q.enqueue(root)			
+	4      Q.enqueue(root)			                              
 	5      while Q is not empty do
 	6          v := Q.dequeue()
 	7          if v is the goal then
@@ -78,12 +67,22 @@ Looking at the graphical representation above, picture:
 	13                 Q.enqueue(w)
 
 
+BFS:
 
-It is important to note that we are not searching for a specific node. As such, we do not specify a stop condition (as in lines 7-8 above).
+
+**A**. starts at the root node (lines 3,4)
+
+**B**. discovers neighboring nodes (lines 9-13)
+
+**C**. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit (line 5)
+
+
+It is important to note that we are not searching for a specific node in this case. We want to visit every possible node. As such, we do not specify a stop condition (as in lines 7-8 above).
 
 
 Given that there's no stop condition, we'll explore the graph until the visit queue is empty. We will try to visit every node.
 
+--- 
 
 Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 
