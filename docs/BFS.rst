@@ -26,7 +26,7 @@ This is a small site with a simple structure.
 
 -----
 
-If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. 
+If we think of **https://joedougherty.github.io** as the root of the graph, we can imagine the other pages as its children nodes. 
 
 
 
@@ -47,6 +47,15 @@ Looking at the graphical representation above, picture:
 + visiting **https://joedougherty.github.io/cv**
 + visiting **https://joedougherty.github.io/about**
 + visiting **https://joedougherty.github.io/blog**
+
+
+
+-----
+
+
+
+``Spider`` is our crawler class. The crawling process is kicked off with ``.weave()``. Let's look at an example implementation from Wikipedia and see how ``Spider`` implements this algorithm across a few methods that cooperate with one another.
+
 
 
 
