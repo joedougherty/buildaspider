@@ -21,7 +21,7 @@ Imagine that we are going to visit a site: https://joedougherty.github.io.
 
 
 
-If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. For example:
+If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. 
 
 
 
@@ -29,7 +29,11 @@ If we think of **https://joedougherty.github.io** as the root, we can imagine th
 
 
 
-According to the [Wikipedia page](https://en.wikipedia.org/wiki/Breadth-first_search):
+
+There are a few ways to traverse graphs. In this case, Breadth-first Search is a natural fit.
+
+
+According to the `Wikipedia page <https://en.wikipedia.org/wiki/Breadth-first_search>`_:
 
 *"It starts at the tree root ... and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level."*
 
@@ -44,7 +48,7 @@ BFS:
 **C**. proceeds by visiting them and continuing this process until there are no new nodes left to discover and visit
 
 
-[Wikipedia Pseudocode](https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode):
+`Wikipedia Pseudocode <https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`_:
 
 
 .. code-block:: 
