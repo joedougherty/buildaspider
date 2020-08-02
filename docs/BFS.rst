@@ -86,7 +86,9 @@ It is important to note that we are not searching for a specific node in this ca
 
 Given that there's no stop condition, we'll explore the graph until the visit queue is empty.
 
---- 
+
+-----
+
 
 Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 
