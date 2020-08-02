@@ -21,9 +21,12 @@ Imagine that we are going to visit a site: https://joedougherty.github.io.
 
 
 
+If we think of **https://joedougherty.github.io** as the root, we can imagine the other pages as its children nodes. For example:
 
 
-.. image:: assets/jdbloggraph.png
+
+.. image:: assets/jd-bloggraph.png
+
 
 
 According to the [Wikipedia page](https://en.wikipedia.org/wiki/Breadth-first_search):
@@ -72,10 +75,10 @@ Given that there's no stop condition, we'll explore the graph until the visit qu
 Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
 
 
-**A**: We enqueue the seed_urls specified in the config file. This occurs in the ``.weave()`` method.
+**A**: We enqueue the **seed_urls** specified in the config file. This occurs in the ``.weave()`` method.
 
 
-The first seed_url is the root of the graph. Let's visit: https://joedougherty.github.io.
+The first **seed_url** is the root of the graph. Let's visit: https://joedougherty.github.io.
 
 
 
