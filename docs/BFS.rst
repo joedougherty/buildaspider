@@ -180,7 +180,23 @@ If an element meets these conditions, it is added to the list:
 + href must not be the current url (prevent infinite ``.visit()`` loops)
 + href must pass ``keep_link()`` (link can't be: broken, a link that threw an exception, or a link that has been visited already):
 
-As long as a link is internal (``checked_link.worth_visiting == True``) it is appended to visit_queue.
+
+.. code-block:: python
+
+    def keep_link(self, href):
+        if any(
+            (
+                href in self.broken_urls,
+                href in self.exception_urls,
+                href in self.visited_urls,
+            )
+        ):
+            return False
+        else:
+            return True
+        
+
+As long as a link is internal (``checked_link.worth_visiting == True``) and it has't been visited yet, it is appended to visit_queue.
 
 
 **C**: The process continues until the visit_queue is empty. 
