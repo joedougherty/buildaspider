@@ -177,8 +177,8 @@ The iterator returned by ``exe.map`` retains the original order of the iterable.
 If an element meets these conditions, it is added to the list:
 
 + element must have the ``href`` attribute 
-+ href must not be the current url (prevent infinite ``.visit()`` loops)
-+ href must pass ``keep_link()`` (link can't be: broken, a link that threw an exception, or a link that has been visited already):
++ ``href`` must not be the current url (prevent infinite ``.visit()`` loops)
++ ``href`` must pass ``keep_link()`` (link can't be broken, a link that threw an exception, or a link that has been visited already):
 
 
 .. code-block:: python
@@ -196,7 +196,7 @@ If an element meets these conditions, it is added to the list:
             return True
         
 
-As long as a link is internal (``checked_link.worth_visiting == True``) and it has't been visited yet, it is appended to visit_queue.
+As long as a link is internal (``checked_link.worth_visiting == True``) and it hasn't been visited yet, it is appended to visit_queue.
 
 
 **C**: The process continues until the visit_queue is empty. 
