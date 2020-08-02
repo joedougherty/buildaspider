@@ -30,7 +30,7 @@ If we think of **https://joedougherty.github.io** as the root, we can imagine th
 
 
 
-There are a `few ways <https://en.wikipedia.org/wiki/Tree_traversal>_` to traverse graphs. In this case, **Breadth-first Search** is a natural fit. 
+There are a `few ways <https://en.wikipedia.org/wiki/Tree_traversal>`_ to traverse graphs. In this case, **Breadth-first Search** is a natural fit. 
 
 
 According to the `Wikipedia page <https://en.wikipedia.org/wiki/Breadth-first_search>`_:
