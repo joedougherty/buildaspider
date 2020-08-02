@@ -54,8 +54,9 @@ Looking at the graphical representation above, picture:
 
 
 
-``Spider`` is our crawler class. The crawling process is kicked off with ``.weave()``. Let's look at an example implementation from Wikipedia and see how ``Spider`` implements this algorithm across a few methods that cooperate with one another.
+``Spider`` is our crawler class. The crawling process is kicked off with ``.weave()``. 
 
+Let's look at an example implementation from Wikipedia and see how ``Spider`` implements this algorithm across a few methods that cooperate with one another.
 
 
 
