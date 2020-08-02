@@ -100,7 +100,7 @@ Given that there's no stop condition, we'll explore the graph until the visit qu
 -----
 
 
-Let's look at how the BFS algorithm is implemented in our ``Spider`` object.
+Let's look at how the BFS algorithm is implemented in our ``Spider`` class.
 
 
 **A**: We enqueue the **seed_urls** specified in the config file. This occurs in the ``.weave()`` method.
