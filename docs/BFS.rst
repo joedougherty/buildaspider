@@ -147,8 +147,7 @@ A few points worth noting here:
 + The ``._update()`` method keeps track of checked links, broken links, and links that threw exceptions. It is also where new pages are added to the ``visit_queue``.
 
 
-**NOTE**: the iterator returned by ``exe.map`` retains the original order of the iterable. If I understand this correctly, the calls to ``check_link`` happen concurrently, but the calls to ``._update()`` happen one-by-one after the threads have returned. Since the calls to ``._update()`` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
-
+The iterator returned by ``exe.map`` retains the original order of the iterable. If I understand this correctly, the calls to ``check_link`` happen concurrently, but the calls to ``._update()`` happen one-by-one after the threads have returned. Since the calls to ``._update()`` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
 
 **B**: Discovering the nearest neighbors is achieved with ``gather_links()``:
 
