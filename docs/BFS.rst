@@ -11,23 +11,24 @@ The Motivating Question
 *How can we visit all the interconnected pages on a given site?*
 
 
-One way to model this problem is to consider a website as a kind of graph. 
-
 
 Imagine that we are going to visit a site: https://joedougherty.github.io.
 
 
-Here is a screenshot:
+Here is a screenshot to demonstrate:
 
 
 .. image:: assets/jd-index.png
 
 
 
-This is a small site with a simple structure. 
+This is a small site with a simple structure. We could click around and visit all its pages manually eventually. But in order to explore a site programmatically, we will want to find an appropriate data structure.
 
 
 -----
+
+
+One way to model this problem is to consider a website as a kind of graph. 
 
 If we think of **https://joedougherty.github.io** as the root of the graph, we can imagine the other pages as its children nodes. 
 
@@ -226,3 +227,9 @@ As long as a link is internal (``checked_link.worth_visiting == True``) and it h
 
 
 Though our implementation is distributed across a few methods, we can see that all the parts are here and working together.
+
+
+-----
+
+
+    
