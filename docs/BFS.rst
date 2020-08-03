@@ -17,6 +17,9 @@ One way to model this problem is to consider a website as a kind of graph.
 Imagine that we are going to visit a site: https://joedougherty.github.io.
 
 
+Here is a screenshot:
+
+
 .. image:: assets/jd-index.png
 
 
