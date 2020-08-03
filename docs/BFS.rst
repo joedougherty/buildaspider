@@ -30,7 +30,7 @@ This is a small site with a simple structure. We could click around and visit al
 
 One way to model this problem is to consider a website as a kind of graph. 
 
-If we think of **https://joedougherty.github.io** as the root of the graph, we can imagine the other pages as its children nodes. 
+If we think of https://joedougherty.github.io as the root of the graph, we can imagine the other pages as its children nodes. 
 
 
 
