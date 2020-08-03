@@ -227,7 +227,7 @@ Here is an excerpt from the ``.update()`` method -- this is where new links are 
         self.log_checked_link(link)
 
 
-**C**: The process continues until the visit_queue is empty. 
+**C**: The process continues until **visit_queue** is empty. 
 
 
 .. code-block:: python
