@@ -22,7 +22,7 @@ Here is a screenshot to demonstrate:
 
 
 
-This is a small site with a simple structure. We could click around and visit all its pages manually eventually. But in order to explore a site programmatically, we will want to find an appropriate data structure.
+This is a small site with a simple structure. We could click around and visit all its pages manually eventually. But in order to explore a site programmatically, we will want to find and use an appropriate data structure.
 
 
 -----
@@ -210,7 +210,21 @@ If an element meets these conditions, it is added to the list:
             return True
         
 
-As long as a link is internal (``checked_link.worth_visiting == True``) and it hasn't been visited yet, it is appended to visit_queue.
+As long as a link is internal (``checked_link.worth_visiting == True``) and it hasn't been visited yet, it is appended to **visit_queue**.
+
+
+Here is an excerpt from the ``.update()`` method -- this is where new links are added to the **visit_queue**.
+
+
+.. code-block:: python
+
+
+    if link.status == LinkStatus.OK:
+        if link.worth_visiting:
+            if (self.keep_link(link.href) and self.keep_link(link.resolved_url)):
+                self.visit_queue.append(link)
+
+        self.log_checked_link(link)
 
 
 **C**: The process continues until the visit_queue is empty. 
@@ -229,7 +243,3 @@ As long as a link is internal (``checked_link.worth_visiting == True``) and it h
 Though our implementation is distributed across a few methods, we can see that all the parts are here and working together.
 
 
------
-
-
-    
