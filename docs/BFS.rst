@@ -210,7 +210,7 @@ If an element meets these conditions, it is added to the list:
             return True
         
 
-As long as a link is internal (``checked_link.worth_visiting == True``) and it hasn't been visited yet, it is appended to **visit_queue**.
+As long as a link is internal (``checked_link.worth_visiting == True``) and passes ``self.keep_link()``, it is appended to **visit_queue**.
 
 
 Here is an excerpt from the ``.update()`` method -- this is where new links are added to the **visit_queue**.
