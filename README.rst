@@ -30,7 +30,7 @@ Installation
 
 .. code-block::
 
-    pip install buildacrawler
+    pip install buildaspider
 
 
 **Option 2:**
