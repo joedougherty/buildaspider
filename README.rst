@@ -138,10 +138,7 @@ The implementation lives in the  **setup_logging** method of the **Spider** base
         now = datetime.now().strftime(self.time_format)
 
         logging.basicConfig(
-            filename=os.path.join(
-                self.cfg.log_dir, 
-                "spider_{}.log".format(now)
-            ),
+            filename=os.path.join(self.cfg.log_dir, f"spider_{now}.log"),
             level=logging.INFO,
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         )
@@ -149,13 +146,13 @@ The implementation lives in the  **setup_logging** method of the **Spider** base
         self.status_logger = logging.getLogger(__name__)
 
         self.broken_links_logpath = os.path.join(
-            self.cfg.log_dir, "broken_links_{}.log".format(now)
+            self.cfg.log_dir, f"broken_links_{now}.log"
         )
         self.checked_links_logpath = os.path.join(
-            self.cfg.log_dir, "checked_links_{}.log".format(now)
+            self.cfg.log_dir, f"checked_links_{now}.log"
         )
         self.exception_links_logpath = os.path.join(
-            self.cfg.log_dir, "exception_links_{}.log".format(now)
+            self.cfg.log_dir, f"exception_links_{now}.log"
         )
 
 
