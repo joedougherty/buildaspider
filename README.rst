@@ -28,7 +28,9 @@ Installation
 **Option 1:**
 
 
-``pip install buildacrawler``
+.. code-block::
+
+    pip install buildacrawler
 
 
 **Option 2:**
