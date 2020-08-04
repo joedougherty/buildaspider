@@ -4,14 +4,14 @@ version = "0.9.1"
 description = "Build yourself a small site crawler."
 authors = ["Joe Dougherty <joseph.dougherty@gmail.com>"]
 license = "MIT"
-readme = README.rst
+readme = "README.rst"
 classifiers = [
-    'Development Status :: 4 - Beta',
-    'Operating System :: POSIX :: Linux',
-    'Programming Language :: Python :: 3',
-    'Intended Audience :: Developers',
-    'Intended Audience :: Education',
-    'Topic :: Education',
+    "Development Status :: 4 - Beta",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Topic :: Education",
 ]
 
 [tool.poetry.dependencies]

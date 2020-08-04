@@ -21,6 +21,26 @@ Written such that it can either be used as-is for small sites, or extended for a
 
 **buildaspider** is intended as a platform to learn to build tools for your own quality assurance purposes.
 
+============
+Installation
+============
+
+**Option 1:**
+
+
+``pip install buildacrawler``
+
+
+**Option 2:**
+
+
+.. code-block:: 
+
+    git clone git@github.com:joedougherty/buildaspider.git
+    cd buildaspider/
+    python3 setup.py install
+
+
 
 ===================
 Example Config File
