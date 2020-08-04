@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "buildaspider"
+version = "0.9.1"
+description = "Build yourself a small site crawler."
+authors = ["Joe Dougherty <joseph.dougherty@gmail.com>"]
+license = "MIT"
+readme = README.rst
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Operating System :: POSIX :: Linux',
+    'Programming Language :: Python :: 3',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Topic :: Education',
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+bs4 = "^0.0.1"
+requests = "^2.24.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
