@@ -213,7 +213,7 @@ If an element meets these conditions, it is added to the list:
 As long as a link is internal (``checked_link.worth_visiting == True``) and passes ``self.keep_link()``, it is appended to **visit_queue**.
 
 
-Here is an excerpt from the ``.update()`` method -- this is where new links are added to the **visit_queue**.
+Here is an excerpt from the ``._update()`` method -- this is where new links are added to the **visit_queue**.
 
 
 .. code-block:: python
