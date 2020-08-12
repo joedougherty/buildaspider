@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "buildaspider"
-version = "0.9.1"
+version = "0.9.2"
 description = "Build yourself a small site crawler."
 authors = ["Joe Dougherty <joseph.dougherty@gmail.com>"]
 license = "MIT"
