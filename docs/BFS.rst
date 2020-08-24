@@ -158,14 +158,14 @@ Here's what it looks like when we ``.visit()`` a link:
 
 A few points worth noting here:
 
-+ the ``self.gather_links()`` method is our implementation of the pseudocode's ``G.adjacentEdges(v)``
++ the ``.gather_links()`` method is our implementation of the pseudocode's ``G.adjacentEdges(v)``
 + The use of ``concurrent.futures.ThreadPoolExecutor`` here lets us spawn up to ``self.max_workers`` to check multiple links at the same time.
 + The ``._update()`` method keeps track of checked links, broken links, and links that threw exceptions. It is also where new pages are added to the ``visit_queue``.
 
 
 The iterator returned by ``exe.map`` retains the original order of the iterable. If I understand this correctly, the calls to ``check_link`` happen concurrently, but the calls to ``._update()`` happen one-by-one after the threads have returned. Since the calls to ``._update()`` are sequential, there is no need to obtain / release locks on the data structures that maintain which links have been visited, are broken, threw exceptions, etc. 
 
-**B**: Discovering the nearest neighbors is achieved with ``gather_links()``:
+**B**: Discovering the nearest neighbors is achieved with ``.gather_links()``:
 
 
 .. code-block:: python
@@ -192,7 +192,7 @@ If an element meets these conditions, it is added to the list:
 
 + element must have the ``href`` attribute 
 + ``href`` must not be the current url (prevent infinite ``.visit()`` loops)
-+ ``href`` must pass ``keep_link()`` (link can't be broken, a link that threw an exception, or a link that has been visited already):
++ ``href`` must pass ``.keep_link()`` (link can't be broken, a link that threw an exception, or a link that has been visited already):
 
 
 .. code-block:: python
@@ -210,7 +210,13 @@ If an element meets these conditions, it is added to the list:
             return True
         
 
-As long as a link is internal (``checked_link.worth_visiting == True``) and passes ``self.keep_link()``, it is appended to **visit_queue**.
+As long as: 
+
++ the link is internal to the site (``checked_link.worth_visiting == True``) 
++ the link's ``href`` passes ``self.keep_link()``
++ the link's ``resolved_url`` passes ``self.keep_link()``
+
+it is appended to **visit_queue**.
 
 
 Here is an excerpt from the ``._update()`` method -- this is where new links are added to the **visit_queue**.
