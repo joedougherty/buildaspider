@@ -26,7 +26,7 @@ Installation
 **Option 1:**
 
 
-.. code-block::
+.. code-block:: text
 
     pip install buildaspider
 
@@ -34,7 +34,7 @@ Installation
 **Option 2:**
 
 
-.. code-block:: 
+.. code-block:: text
 
     git clone git@github.com:joedougherty/buildaspider.git
     cd buildaspider/
@@ -54,7 +54,7 @@ Step 1: Set Up the Config File
 A config file is **required**. You can copy and paste the example below to get started.
 
 
-.. code-block::
+.. code-block:: text
 
     [buildaspider]
 
@@ -424,7 +424,7 @@ Running the Test Suite
     You will need to ensure that the ``log_dir`` config file field is set correctly before you run the test suite. 
 
 
-.. code-block::
+.. code-block:: text
 
 
     cd tests/
