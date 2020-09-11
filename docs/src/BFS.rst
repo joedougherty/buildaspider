@@ -56,6 +56,9 @@ Looking at the graphical representation above, picture:
 
 -----
 
+-----------------------------
+Understanding the Pseudocode
+-----------------------------
 
 
 ``Spider`` is our crawler class. The crawling process is kicked off with ``.weave()``. 
@@ -103,6 +106,10 @@ Given that there's no stop condition, we'll explore the graph until the visit qu
 
 -----
 
+
+----------------------------------
+From Pseudocode to Implementation
+----------------------------------
 
 Let's look at how the BFS algorithm is implemented in our ``Spider`` class.
 

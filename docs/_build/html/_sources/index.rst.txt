@@ -13,6 +13,13 @@ Welcome to buildaspider's documentation!
 
    src/singlepage.rst
 
+
+.. toctree::
+   :maxdepth: 2
+   :caption: A Theoretical Aside:
+   
+   src/BFS.rst
+
 ============
 Introduction
 ============
