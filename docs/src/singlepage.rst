@@ -12,13 +12,13 @@ Installation
     First, create the virtual environment.
 
     
-    .. code-block::
+    .. code-block:: python
 
         python3 -m venv bas_env
 
     Second, active the virtual environment.
 
-    .. code-block::
+    .. code-block:: python
 
         source bas_env/bin/activate
 
