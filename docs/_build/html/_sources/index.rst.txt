@@ -17,6 +17,7 @@ Welcome to buildaspider's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: A Theoretical Aside:
+   :hidden:
    
    src/BFS.rst
 
