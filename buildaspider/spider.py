@@ -16,6 +16,9 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
 
+from prettytable import PrettyTable
+
+
 from .spiderconfig import SpiderConfig
 
 
@@ -107,6 +110,21 @@ class Spider(object):
         time_format="%Y-%m-%d_%H:%M",
     ):
         self.cfg = SpiderConfig(path_to_config_file)
+        self.path_to_config_file = os.path.abspath(path_to_config_file)
+
+        # Required Attributes from Config file
+        self.log_dir = self.cfg.log_dir
+        self.include_patterns = self.cfg.include_patterns
+        self.exclude_patterns = self.cfg.exclude_patterns
+        self.seed_urls = self.cfg.seed_urls
+        self.max_num_retries = self.cfg.max_num_retries
+
+        # Optional Attributes from Config file
+        self.login = self.cfg.login
+        self.username = self.cfg.username
+        self.password = self.cfg.password
+        self.login_url = self.cfg.login_url
+        
         self.max_workers = max_workers
         self.time_format = time_format
 
@@ -121,15 +139,15 @@ class Spider(object):
 
         if all(
             (
-                self.cfg.login == True, 
-                self.cfg.username is not None, 
-                self.cfg.password is not None, 
-                self.cfg.login_url is not None,
+                self.login == True, 
+                self.username is not None, 
+                self.password is not None, 
+                self.login_url is not None,
             )
         ):
             self.session = self.login()
         else:
-            self.session = mint_new_session(self.cfg.max_num_retries)
+            self.session = mint_new_session(self.max_num_retries)
 
         if not isinstance(self.session, requests.Session):
             raise Exception(
@@ -160,7 +178,7 @@ class Spider(object):
         now = datetime.now().strftime(self.time_format)
 
         logging.basicConfig(
-            filename=os.path.join(self.cfg.log_dir, f"spider_{now}.log"),
+            filename=os.path.join(self.log_dir, f"spider_{now}.log"),
             level=logging.INFO,
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         )
@@ -168,14 +186,41 @@ class Spider(object):
         self.status_logger = logging.getLogger(__name__)
 
         self.broken_links_logpath = os.path.join(
-            self.cfg.log_dir, f"broken_links_{now}.log"
+            self.log_dir, f"broken_links_{now}.log"
         )
         self.checked_links_logpath = os.path.join(
-            self.cfg.log_dir, f"checked_links_{now}.log"
+            self.log_dir, f"checked_links_{now}.log"
         )
         self.exception_links_logpath = os.path.join(
-            self.cfg.log_dir, f"exception_links_{now}.log"
+            self.log_dir, f"exception_links_{now}.log"
         )
+
+    def verify(self):
+        t = PrettyTable()
+
+        t.field_names = ["ATTRIBUTE", "VALUE"]
+        t.align["ATTRIBUTE"] = "l"
+        t.align["VALUE"] = "l"
+
+        t.add_row(["Config File", self.path_to_config_file])
+        t.add_row(["Log Directory", self.log_dir])
+        t.add_row(["Seed URL", self.seed_urls[0]])
+        t.add_row(["Include Patterns", self.include_patterns])
+        t.add_row(["Exclude Patterns", self.exclude_patterns])
+        t.add_row(["Max Number of Retries", self.max_num_retries])
+
+        if self.login:
+            t.add_row(["Login", True])
+            t.add_row(["Username", self.username])
+            t.add_row(["Password", self.password])
+            t.add_row(["Login URL", self.login_url])
+        else:   
+            t.add_row(["Login", False])
+
+        t.add_row(["Max Workers", self.max_workers])
+        t.add_row(["Time Format", self.time_format])
+
+        print(t)
 
     def login(self):
         # If your session doesn't require logging in, you can leave this method unimplemented.
@@ -289,7 +334,7 @@ class Spider(object):
 
             + Add pertinent links to the visit_queue
         """
-        for seed_url in self.cfg.seed_urls:
+        for seed_url in self.seed_urls:
             self.visit_queue.append(Link(None, seed_url, None, cfg=self.cfg))
 
         try:
