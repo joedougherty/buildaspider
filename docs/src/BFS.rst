@@ -70,7 +70,7 @@ Let's look at an example implementation from Wikipedia and see how ``Spider`` im
 `Wikipedia Pseudocode <https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode>`_:
 
 
-.. code-block:: 
+.. code-block:: text 
 
 
 	1  procedure BFS(G, root) is
